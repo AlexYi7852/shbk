@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Title</title>
     <link rel="stylesheet" type="text/css" href="/static/css/public.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/register.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/submission.css">
 </head>
 <body>
 
@@ -24,15 +24,18 @@
     </div>
 </div>
 
-<form action="/api/register" method="post">
-<label>用户名：</label>
-<input type="text" name="username">
+<form action="/api/submission" method="post">
+<div>
 
-<label>密码：</label>
-<input type="password" name="password">
-<input type="submit" value="注册">
+<label> 标题：</label>
+<input type="text" name="title">
+</div>
+<div>
+<label>内容:</label>
+<textarea name="content"></textarea>
+</div>
+<input type="submit" value="提交">
 </form>
-
 
 </body>
 </html>
