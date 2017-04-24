@@ -25,15 +25,19 @@
 </div>
 
 
-<form action="/api/login" method="post">
-<label>用户名：</label>
-<input type="text" name="username">
-
-<label>密码：</label>
-<input type="password" name="password">
-<input type="submit" value="登陆">
-</form>
-
+<div class="login-form">
+    <div>
+        <label>用户名：</label>
+        <input id="username" name="username">
+    </div>
+    <div>
+        <label>密码：</label>
+        <input id="password" name="password">
+    </div>
+    <button id="btn-login">登陆</button>
+</div>
+<script src="../static/js/lib/jquery-3.2.1.min.js"></script>
+<script src="../static/js/login.js"></script>
 
 </body>
 </html>

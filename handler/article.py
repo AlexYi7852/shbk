@@ -25,3 +25,17 @@ class ApiSubmissionHandler(tornado.web.RequestHandler):
         data = db.insert("insert into article value (%s,%s,%s,%s,%s)", None,title,content,None,uid)
         db.close()
         self.write('插入成功!文章ID是' + str(data))
+
+class CommentHandler(tornado.web.RequestHandler):
+    def get(self, article_id):
+        db = torndb.Connection(host="localhost", database="alex", user="root", password="11111111")
+        article = db.get('select * from article where id=%s',article_id)
+        user = db.get('select * from user where id=%s', article.uid)
+        comments = db.query('select * from comment where article_id=%s', article_id)
+        for comment in comments:
+            uid = comment.uid
+            user_info = db.get('select * from user where id=%s', uid)
+            comment['user_info'] = user_info
+        db.close()
+        self.render('comment.html', comments=comments,article=article,user=user)
+

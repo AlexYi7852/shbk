@@ -11,7 +11,9 @@ class LoginHandler(tornado.web.RequestHandler):
     def get(self):
         self.render("login.html")
 
+
 class ApiLoginHandler(tornado.web.RequestHandler):
+
     def post(self):
         username = self.get_argument("username")
         password = self.get_argument("password")
@@ -21,16 +23,20 @@ class ApiLoginHandler(tornado.web.RequestHandler):
         data3 = db.get("select id from user where username=%s and password=%s",username,password)
         db.close()
         if data3 is not None:
-            self.set_cookie('username',username)
-            self.set_cookie('uid',str(data3.id))
+            self.set_cookie('username', username)
+            self.set_cookie('uid', str(data3.id))
             data4 = db.update("update user set user.last_login_at=Null where username=%s and password=%s",username,password)
-            self.write('登陆成功!您上次登录时间是' + str(data.last_login_at))
+            self.write({"code": 1, "last_login_at": str(data.last_login_at)})
+            # self.write('登陆成功!您上次登录时间是' + str(data.last_login_at))
         else:
-            self.write('登陆失败!请核对用户名和密码！')
+            self.write({"code": 0, "msg": '用戶名或密碼錯誤'})
+            # self.write('登陆失败!请核对用户名和密码！')
+
 
 class RegisterHandler(tornado.web.RequestHandler):
     def get(self):
         self.render("register.html")
+
 
 class ApiRegisterHandler(tornado.web.RequestHandler):
     def post(self):

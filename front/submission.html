@@ -24,18 +24,19 @@
     </div>
 </div>
 
-<form action="/api/submission" method="post">
-<div>
-
-<label> 标题：</label>
-<input type="text" name="title">
+<div class="submission_form">
+    <div>
+        <label> 标题：</label>
+        <input id="title" type="text" name="title">
+    </div>
+    <div>
+        <label>内容:</label>
+        <textarea id="content" name="content"></textarea>
+    </div>
+    <button id="btn-submission">提交</button>
 </div>
-<div>
-<label>内容:</label>
-<textarea name="content"></textarea>
-</div>
-<input type="submit" value="提交">
-</form>
+<script src="../static/js/lib/jquery-3.2.1.min.js"></script>
+<script src="../static/js/submission.js"></script>
 
 </body>
 </html>

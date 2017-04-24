@@ -24,15 +24,19 @@
     </div>
 </div>
 
-<form action="/api/register" method="post">
-<label>用户名：</label>
-<input type="text" name="username">
-
-<label>密码：</label>
-<input type="password" name="password">
-<input type="submit" value="注册">
-</form>
-
+<div class="register_form">
+    <div>
+        <label>用户名：</label>
+        <input id="username" type="text" name="username">
+    </div>
+    <div>
+        <label>密码：</label>
+        <input id="password" name="password">
+    </div>
+    <button id="btn-register">注册</button>
+</div>
+<script src="../static/js/lib/jquery-3.2.1.min.js"></script>
+<script src="../static/js/register.js"></script>
 
 </body>
 </html>

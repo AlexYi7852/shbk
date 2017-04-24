@@ -24,6 +24,17 @@
     </div>
 </div>
 
+{% for article in articles %}
+   <h1><a href="/comment/{{article.id}}">标题：{{article.title}}</a></h1>
+
+       <div>发表人:{{article['user_info']['username']}}</div>
+       <div>发表于：{{article.created_at}}</div>
+        <p>内容:{{article.content}}</p>
+<form action="/api/comment" method="post">
+<input type="hidden" name="article_id" value={{article.id}}>
+<input type="text" name="content">
+<input type="submit" value="提交评论">
+</form>
 
 
 </body>

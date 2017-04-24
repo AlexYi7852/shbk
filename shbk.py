@@ -5,7 +5,7 @@ import tornado.ioloop
 import tornado.web
 import os
 from tornado.options import define, options
-define("port", default=5002, help="run on the given port", type=int)
+define("port", default=5010, help="run on the given port", type=int)
 
 from handler.index import HotHandler, LoginHandler, ApiLoginHandler,RegisterHandler, ApiRegisterHandler
 from handler.article import SubmissionHandler, ApiSubmissionHandler
