@@ -14,7 +14,7 @@
         <a class="public-top-middle" href="/">热门</a>
         <a class="public-top-middle">24小时</a>
         <a class="public-top-middle">热图</a>
-        <a class="public-top-middle">文字</a>
+        <a class="public-top-middle" href="/comment">评论</a>
         <a class="public-top-middle">穿越</a>
         <a class="public-top-middle">糗图</a>
         <a class="public-top-middle">新鲜</a>
@@ -26,7 +26,6 @@
 
 {% for article in articles %}
    <h1><a href="/comment/{{article.id}}">标题：{{article.title}}</a></h1>
-
        <div>发表人:{{article['user_info']['username']}}</div>
        <div>发表于：{{article.created_at}}</div>
         <p>内容:{{article.content}}</p>
@@ -35,6 +34,7 @@
 <input type="text" name="content">
 <input type="submit" value="提交评论">
 </form>
+{% end %}
 
 
 </body>
