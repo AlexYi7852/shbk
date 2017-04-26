@@ -30,7 +30,7 @@ class CommentHandler(tornado.web.RequestHandler):
     def get(self, article_id):
         db = torndb.Connection(host="localhost", database="alex", user="root", password="11111111", time_zone='+8:00')
         article = db.get('select * from article where id=%s',article_id)
-        user = db.get('select * from user where id=%s', article.uid)
+        user = db.get('select * from user where id=%s', article.user_id)
         comments = db.query('select * from comment where article_id=%s', article_id)
         for comment in comments:
             uid = comment.uid
@@ -45,6 +45,6 @@ class ApiCommentHandler(tornado.web.RequestHandler):
         content = self.get_argument('content')
         uid = self.get_cookie('uid')
         db = torndb.Connection(host='localhost', database='alex', user='root', password="11111111", time_zone='+8:00')
-        data = db.insert('insert into comment values (%S,%s,%s,%s,%s)', None, content, None, article_id, uid)
+        data = db.insert('insert into comment value (%s,%s,%s,%s,%s)', None, content, None, article_id, uid)
         db.close()
         self.redirect('/')

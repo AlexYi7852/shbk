@@ -14,7 +14,7 @@
         <a class="public-top-middle" href="/">热门</a>
         <a class="public-top-middle">24小时</a>
         <a class="public-top-middle">热图</a>
-        <a class="public-top-middle" href="/comment">评论</a>
+        <a class="public-top-middle">文字</a>
         <a class="public-top-middle">穿越</a>
         <a class="public-top-middle">糗图</a>
         <a class="public-top-middle">新鲜</a>
@@ -24,21 +24,13 @@
     </div>
 </div>
 
-{% for article in articles %}
-   <h1><a href="/comment/{{article.id}}">标题：{{article.title}}</a></h1>
-
-       <div>发表人:{{article['user_info']['username']}}</div>
-       <div>发表于：{{article.created_at}}</div>
-        <p>内容:{{article.content}}</p>
-<form action="/api/comment" method="post">
-<input type="hidden" name="article_id" value={{article.id}}>
-<input type="text" name="content">
-<input type="submit" value="提交评论">
-</form>
-
-
-
+{% for comment in comments %}
+    <h3>  <div>评论人{{comment['user_info']['username']}}</div></h3>
+       <div>发表于：{{comment.created_at}}</div>
+<p>评论ID: {{comment.id}}</p>
+        <p>评论内容:{{comment.content}}</p>
 {% end %}
+
 
 
 </body>

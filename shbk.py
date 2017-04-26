@@ -28,7 +28,7 @@ if __name__ == "__main__":
             (r"/api/register", ApiRegisterHandler),
             (r"/submission", SubmissionHandler),
             (r"/api/submission", ApiSubmissionHandler),
-            (r"/comment", CommentHandler),
+            (r"/comment/(\d+)", CommentHandler),
             (r"/api/comment", ApiCommentHandler)
         ], **settings)
     http_server = tornado.httpserver.HTTPServer(app)

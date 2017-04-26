@@ -13,7 +13,7 @@ class HotHandler(tornado.web.RequestHandler):
             user_info = db.get('select id,username from user where id=%s', uid)
             article['user_info'] = user_info
         db.close()
-        self.render("hot.html", articles = articles)
+        self.render("index.html", articles = articles)
 
 
 class LoginHandler(tornado.web.RequestHandler):
