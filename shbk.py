@@ -6,9 +6,9 @@ import tornado.ioloop
 import tornado.web
 import os
 from tornado.options import define, options
-define("port", default=5010, help="run on the given port", type=int)
+define("port", default=5011, help="run on the given port", type=int)
 
-from handler.index import HotHandler, LoginHandler, ApiLoginHandler, RegisterHandler, ApiRegisterHandler
+from handler.index import IndexHandler, ApiArticlesHandler, HotHandler, LoginHandler, ApiLoginHandler, RegisterHandler, ApiRegisterHandler
 from handler.article import SubmissionHandler, ApiSubmissionHandler, CommentHandler, ApiCommentHandler
 
 settings = {
@@ -21,7 +21,9 @@ if __name__ == "__main__":
     tornado.options.parse_command_line()
     app = tornado.web.Application(
         handlers=[
-            (r"/", HotHandler),
+            (r"/", IndexHandler),
+            (r"/api/articles", ApiArticlesHandler),
+            (r"/hot", HotHandler),
             (r"/login", LoginHandler),
             (r"/api/login",ApiLoginHandler),
             (r"/register", RegisterHandler),

@@ -1,7 +1,7 @@
 #coding:utf8
 
 import tornado.web
-import torndb
+from util.database import get_db
 
 class SubmissionHandler(tornado.web.RequestHandler):
     def get(self):
@@ -14,7 +14,7 @@ class ApiSubmissionHandler(tornado.web.RequestHandler):
         if uid is None or uid == '':
             self.write('你还没登录')
             return
-        db = torndb.Connection(host="localhost", database="alex", user="root", password="11111111", time_zone='+8:00')
+        db = get_db()
         user = db.get("select id from user where id=%s", uid)
         if user is None:
             db.close()
@@ -28,7 +28,7 @@ class ApiSubmissionHandler(tornado.web.RequestHandler):
 
 class CommentHandler(tornado.web.RequestHandler):
     def get(self, article_id):
-        db = torndb.Connection(host="localhost", database="alex", user="root", password="11111111", time_zone='+8:00')
+        db = get_db()
         article = db.get('select * from article where id=%s',article_id)
         user = db.get('select * from user where id=%s', article.user_id)
         comments = db.query('select * from comment where article_id=%s', article_id)
@@ -44,7 +44,11 @@ class ApiCommentHandler(tornado.web.RequestHandler):
         article_id = self.get_argument('article_id')
         content = self.get_argument('content')
         uid = self.get_cookie('uid')
-        db = torndb.Connection(host='localhost', database='alex', user='root', password="11111111", time_zone='+8:00')
-        data = db.insert('insert into comment value (%s,%s,%s,%s,%s)', None, content, None, article_id, uid)
+        if not uid:
+            self.write({"code": 1, "msg": "你還沒登錄，請新登錄"})
+            return
+        db = get_db()
+        db.insert('insert into comment value (%s,%s,%s,%s,%s)', None, content, None, article_id, uid)
         db.close()
-        self.redirect('/')
+        self.write({"code": 0, "msg": '提交评论成功！'})
+        #self.redirect('/')

@@ -1,12 +1,22 @@
 
 /*******************************/
 
-#from-article{
+#main{
     width: 960px;
+    margin: auto;
 }
 
+#main-articles{
+    float : left;
+    width : 640px;
+    height: 293px;
+}
 
-
+/*#main-img{*/
+    /*width : 300px;*/
+    /*height: 250px;*/
+    /*background: url(http://pagead2.googlesyndication.com/simgad/7699935881894538009);*/
+/*}*/
 /*******************************/
 
 

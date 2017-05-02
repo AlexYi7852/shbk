@@ -19,24 +19,42 @@
         <a class="public-top-middle">糗图</a>
         <a class="public-top-middle">新鲜</a>
         <a class="public-top-middle" href="/submission">投稿</a>
-        <a class="public-top-right" href="/login">登录</a>
+        <a class="public-top-right" id="login" href="/login">登录</a>
         <a class="public-top-right" href="/register">注册</a>
     </div>
 </div>
+<div id="articles">
 
-<div id="from-article">
-{% for article in articles %}
-   <h1><a href="/comment/{{article.id}}">标题：{{article.title}}</a></h1>
-       <div>发表人:{{article['user_info']['username']}}</div>
-       <div>发表于：{{article.created_at}}</div>
-        <p>内容:{{article.content}}</p>
-<form action="/api/comment" method="post">
-<input type="hidden" name="article_id" value={{article.id}}>
-<input type="text" name="content">
-<input type="submit" value="提交评论">
-</form>
-{% end %}
+
 </div>
+
+<script type="text/html" id="from-article">
+ <% for(var i=0;i< articles.length; i++){ %>
+ <div id="article-content">
+     <div id="main">
+         <div id="main-articles">
+             <h2><a href="/comment/<%= articles[i].id %>" style="text-decoration: none;font-size:14px;color: #666;">发表人:<%= articles[i].created_by %></a></h2>
+             <div>标题：<%= articles[i].title %></div>
+             <div>发表于：<%= articles[i].created_at %></div>
+             <p style="line-height: 200%;cursor:pointer">内容:<%= articles[i].content%></p>
+             <p style="font-size: 14px;"><%= articles[i].count %>条评论</p>
+             <div class="comment-from">
+                 <input type="hidden" class="article_id" name="article_id" value= <%=articles[i].id %> />
+                 <input class="content" name="content">
+                 <button class="btn-comment">提交评论</button>
+             </div>
+         </div>
+
+     </div>
+
+ </div>
+
+<% } %>
+</script>
+
+<script src="../static/js/lib/jquery-3.2.1.min.js"></script>
+<script src="../static/js/lib/template-web.js"></script>
+<script src="../static/js/index.js"></script>
 
 </body>
 </html>
