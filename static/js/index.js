@@ -2,18 +2,21 @@
  * Created by ALEX on 2017/4/25.
  */
 (function ($) {
+
     getArticles();
+
     $(document).on('click', '.btn-comment', function (e) {
         postComment(e);
     });
+
     document.onkeydown = function (event) {
         var e = event || window.event || arguments.callee.caller.arguments[0];
         if (e && e.keyCode == 13) {
             postComment(e);
         }
     };
-    function getArticles() {
 
+    function getArticles() {
         $.ajax({
             url: '/api/articles',
             type: 'GET',
@@ -30,22 +33,19 @@
             }
         })
     }
-    function postComment(e) {
 
+    function postComment(e) {
         var $target = $(e.target),
             $form = $target.parent('.comment-from'),
             content = $form.find(".content").val(),
             article_id = $form.find(".article_id").val();
-
         if(content == ''){
             return;
         }
-
         var params = {
             article_id: article_id,
             content: content
         };
-
         $.ajax({
             url: '/api/comment',
             type: 'POST',
@@ -65,5 +65,6 @@
             }
         })
     }
+
 })(jQuery);
 

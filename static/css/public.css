@@ -3,6 +3,7 @@ body{
     min-width: 960px;
     margin : 0;
     padding: 0;
+    background-color: #f5f5f5;
 }
 
 input{
@@ -44,7 +45,36 @@ input{
     text-decoration: none;
 }
 /*******************************/
+.main{
+    width: 960px;
+    margin: auto;
+}
 
+.main-articles{
+    margin-top : 50px;
+    float : left;
+    width : 640px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    background-color: white;
+}
+
+.username{
+    color: #999;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 50px;
+}
+
+.content{
+    cursor:pointer;
+    text-decoration: none;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.8;
+    /*border-bottom: 1px solid #999;*/
+}
 
 
 

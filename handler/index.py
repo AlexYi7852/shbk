@@ -38,7 +38,7 @@ class ApiArticlesHandler(BaseHandler):
             tempData = {}
             uid = article.user_id
             user = db.get('select username from user where id=%s', uid)
-            tempData['created_by'] = user.username
+            tempData['username'] = user.username
             tempData['id'] = article.id
             tempData['title'] = article.title
             tempData['content'] = article.content
