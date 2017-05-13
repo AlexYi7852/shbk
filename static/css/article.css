@@ -1,0 +1,103 @@
+
+
+#main{
+    width: 960px;
+    margin: auto;
+    padding: 50px;
+}
+
+#article{
+    float: left;
+    width: 640px;
+    background: white;
+    padding-left: 30px;
+    padding-right: 30px;
+
+}
+
+
+
+#comments{
+    float: left;
+    width: 640px;
+    background: white;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.username{
+    color: #9B8878;
+}
+
+#previous-article{
+    float: left;
+    width: 102px;
+    height: 36px;
+    color: #fb0;
+    line-height: 36px;
+    margin-top: 3px;
+    margin-left: 30px;
+    border: 1px solid #fb0;
+}
+
+#next-article{
+    float: left;
+    width: 300px;
+    height: 44px;
+    color: white;
+    line-height: 44px;
+    background-color: #fb0;
+    margin-left: 36px;
+}
+
+#collection{
+    float: right;
+    width: 102px;
+    height: 36px;
+    line-height: 36px;
+    color: #fb0;
+    margin-top: 3px;
+    margin-right: 30px;
+    border: 1px solid #fb0;
+}
+
+
+#shen-comment{
+    display: block;
+    float: left;
+    width: 16px;
+    height: 15px;
+    margin-top: 3px;
+    background-size: contain;
+    background-image: url(../img/cmt-god.png);
+}
+
+.first-comment{
+    float: left;
+    color: #fb0;
+    clear: both;
+    margin-left: 10px;
+    font-size: 14px;
+    margin-top: 80px;
+}
+
+
+.main-top{
+    display: inline-block;
+}
+
+.name{
+    float: left;
+    color: #9B8878;
+}
+
+.time{
+    float: right;
+    margin-left: 20px;
+    color: #9B8878;
+}
+
+.comments-content{
+    border-bottom: 1px solid #999;
+    line-height: 30px;
+}

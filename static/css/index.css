@@ -8,11 +8,10 @@
     font-size: 14px;
     color : #999;
 }
-/*#main-img{*/
-    /*width : 300px;*/
-    /*height: 250px;*/
-    /*background: url(http://pagead2.googlesyndication.com/simgad/7699935881894538009);*/
-/*}*/
+
+.username{
+    text-decoration: none;
+}
 /*******************************/
 
 

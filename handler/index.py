@@ -30,19 +30,25 @@ class ApiArticlesHandler(BaseHandler):
 
     def get(self):
         db = get_db()
-        articles = db.query('select a.*,  (select count(*) from comment where comment.article_id=a.id) as count from article as a')
+        articles = db.query('select a.*,  (select count(*) from comment where comment.article_id=a.id) as count from article as a order by created_at desc')
         result = {}
         content = []
-
         for article in articles:
             tempData = {}
             uid = article.user_id
-            user = db.get('select username from user where id=%s', uid)
+            user = db.get('select id,username from user where id=%s', uid)
             tempData['username'] = user.username
+            tempData['user_id'] = user.id
             tempData['id'] = article.id
-            tempData['title'] = article.title
+            comments = db.query('select * from comment where article_id=%s order by created_at desc limit 1', article.id)
+            for comment in comments:
+                user_info = db.query("select username from user where id=%s", comment.uid)
+                comment['username'] = user_info[0].username
+                comment['created_at'] = str(comment['created_at'])
+            db.close()
             tempData['content'] = article.content
             tempData['count'] = article.count
+            tempData['comments'] = comments
             tempData['created_at'] = article.created_at.strftime("%Y-%m-%d %H:%M:%S")
             content.append(tempData)
         result['Code'] = '0'
@@ -63,12 +69,6 @@ class HotHandler(tornado.web.RequestHandler):
             article['user_info'] = user_info
         db.close()
         self.render("hot.html", articles = articles)
-
-
-class LoginHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.render("login.html")
-
 
 class ApiLoginHandler(tornado.web.RequestHandler):
     def post(self):

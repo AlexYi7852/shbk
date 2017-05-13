@@ -1,8 +1,8 @@
 /**
- * Created by ALEX on 2017/4/24.
+ * Created by ALEX on 2017/5/13.
  */
 (function ($) {
-    $("#btn-login").on("click", function () {
+    $("#login").on("click", function () {
         login();
     });
     document.onkeydown = function (event) {

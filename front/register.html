@@ -5,13 +5,16 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="/static/css/public.css">
     <link rel="stylesheet" type="text/css" href="/static/css/register.css">
-</head>blic-top">
-    <div class="public-topnav">
-        <img class="public-top-img" src="http://static.qiushibaike.com/images/logo2016.png?v=2016-08-11-1718">
-        <a class="
+    <link rel="stylesheet" type="text/css" href="/static/css/mini-login.css">
+    <script src="../static/js/lib/jquery-3.2.1.min.js"></script>
+    <script src="../static/js/public.js"></script>
+</head>
 <body>
 
-<div class="pupublic-top-middle" href="/">热门</a>
+<div class="public-top">
+    <div class="public-topnav">
+        <img class="public-top-img" src="http://static.qiushibaike.com/images/logo2016.png?v=2016-08-11-1718">
+        <a class="public-top-middle" href="/">热门</a>
         <a class="public-top-middle">24小时</a>
         <a class="public-top-middle">热图</a>
         <a class="public-top-middle">文字</a>
@@ -19,7 +22,7 @@
         <a class="public-top-middle">糗图</a>
         <a class="public-top-middle">新鲜</a>
         <a class="public-top-middle" href="/submission">投稿</a>
-        <a class="public-top-right" href="/login">登录</a>
+        <a class="public-top-right" id ="mini-login" href="javascript:(1)">登录</a>
         <a class="public-top-right" href="/register">注册</a>
     </div>
 </div>
@@ -31,10 +34,12 @@
     </div>
     <div>
         <label>密码：</label>
-        <input id="password" name="password">
+        <input id="password" type="password" name="password">
     </div>
     <button id="btn-register">注册</button>
 </div>
+
+{% include "mini-login.html" %}
 <script src="../static/js/lib/jquery-3.2.1.min.js"></script>
 <script src="../static/js/register.js"></script>
 

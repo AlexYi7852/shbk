@@ -5,6 +5,9 @@
     <title>首页</title>
     <link rel="stylesheet" type="text/css" href="/static/css/public.css">
     <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/mini-login.css">
+    <script src="../static/js/lib/jquery-3.2.1.min.js"></script>
+    <script src="../static/js/public.js"></script>
 </head>
 <body>
 
@@ -19,28 +22,42 @@
         <a class="public-top-middle">糗图</a>
         <a class="public-top-middle">新鲜</a>
         <a class="public-top-middle" href="/submission">投稿</a>
-        <a class="public-top-right" id="login" href="/login">登录</a>
+        <a class="public-top-right" id ="mini-login" href="javascript:(1)">登录</a>
         <a class="public-top-right" href="/register">注册</a>
-    </div>
+    </div> 
 </div>
-<div id="articles"></div>
+<div id="main">
+    <div id="articles"></div>
+    <div id="first_comment"></div>
+</div>
+
+
+
+
 <script type="text/html" id="from-article">
     <% for(var i=0;i< articles.length; i++){ %>
     <div class="main">
         <div class="main-articles">
-            <div class="username"><%= articles[i].username %></div>
+            <div>
+                <a style="float: left;" class="username" href="/users/<%= articles[i].user_id %>"><%= articles[i].username %></a>
+                <input type="hidden" class="">
+                <button style="float: right;top: 15px;" id="btn-foucs">关注</button>
+            </div>
+            <div style="clear: both"></div>
             <a href="/article/<%= articles[i].id %>" class="content"><%= articles[i].content%></a>
             <p class="comment-count"><%= articles[i].count %>条评论</p>
-            <div class="comment-from">
-                <input type="hidden" class="article_id" name="article_id" value=<%=articles[i].id %> />
-                <input class="content" name="content">
-                <button class="btn-comment">提交评论</button>
-            </div>
+            <% if(articles[i].comments.length > 0){ %>
+            <p style="color: #fb0;">神评论</p>
+            <a class="username" href="/users/<%= articles[i].comments[0].uid %>"><%= articles[i].comments[0].username %></a>
+            <div class="content"><%= articles[i].comments[0].content %></div>
+            <% } %>
         </div>
     </div>
     <% } %>
 </script>
 
+
+{% include "mini-login.html" %}
 <script src="../static/js/lib/jquery-3.2.1.min.js"></script>
 <script src="../static/js/lib/template-web.js"></script>
 <script src="../static/js/index.js"></script>

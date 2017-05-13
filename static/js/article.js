@@ -19,6 +19,9 @@
                 var article = data.body;
                 var articleHtml = template('template-article', article)
                 $("#article").html(articleHtml)
+            },
+            error: function (data) {
+                console.log('错误：', data)
             }
         })
     }
@@ -41,5 +44,4 @@
             }
         })
     }
-
 })(jQuery);

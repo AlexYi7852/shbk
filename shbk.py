@@ -8,10 +8,11 @@ import os
 from tornado.options import define, options
 define("port", default=5011, help="run on the given port", type=int)
 
-from handler.index import IndexHandler, ApiArticlesHandler, HotHandler, LoginHandler, ApiLoginHandler, RegisterHandler, ApiRegisterHandler
+from handler.index import IndexHandler, ApiArticlesHandler, HotHandler, ApiLoginHandler, RegisterHandler, ApiRegisterHandler
 
 from handler.article import SubmissionHandler, ApiSubmissionHandler, ApiArticleHandler, ArticleHandler,  ApiCommentsHandler,  ApiCommentHandler
 
+from handler.user import UsersHandler, ApiUserInfoHandler, ApiUserArticlesHandler
 settings = {
     'debug' : True,
     'template_path': os.path.join(os.path.dirname(__file__), "front"),
@@ -24,7 +25,6 @@ if __name__ == "__main__":
         handlers=[
             (r"/", IndexHandler),
             (r"/hot", HotHandler),
-            (r"/login", LoginHandler),
             (r"/api/login", ApiLoginHandler),
             (r"/register", RegisterHandler),
             (r"/api/register", ApiRegisterHandler),
@@ -34,7 +34,10 @@ if __name__ == "__main__":
             (r"/api/article/(\d+)", ApiArticleHandler),
             (r"/api/comments/(\d+)", ApiCommentsHandler),
             (r"/api/articles", ApiArticlesHandler),
-            (r"/api/comment", ApiCommentHandler)
+            (r"/api/comment", ApiCommentHandler),
+            (r"/users/(\d+)", UsersHandler),
+            (r"/api/users/(\d+)", ApiUserInfoHandler),
+            (r"/api/users_articles/(\d+)", ApiUserArticlesHandler)
         ], **settings)
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(options.port)

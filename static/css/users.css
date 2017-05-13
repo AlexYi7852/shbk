@@ -1,0 +1,19 @@
+
+#main{
+    width: 980px;
+    height: 283px;
+    margin: auto;
+
+}
+
+#users-top{
+    width: 980px;
+    height: 220px;
+    background-image: url(../img/usercover.jpg);
+}
+
+#users-top-bottom{
+    width: 980px;
+    height: 63px;
+    border: 1px solid #999;
+}

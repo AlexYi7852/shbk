@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="/static/css/public.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/comment.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/article.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/mini-login.css">
+    <script src="../static/js/lib/jquery-3.2.1.min.js"></script>
+    <script src="../static/js/public.js"></script>
 </head>
 <body>
 
@@ -19,7 +22,7 @@
         <a class="public-top-middle">糗图</a>
         <a class="public-top-middle">新鲜</a>
         <a class="public-top-middle" href="/submission">投稿</a>
-        <a class="public-top-right" href="/login">登录</a>
+        <a class="public-top-right" id ="mini-login" href="javascript:(1)">登录</a>
         <a class="public-top-right" href="/register">注册</a>
     </div>
 </div>
@@ -31,18 +34,28 @@
 
 <script type="text/html" id="template-article">
     <div class="username"><%= username %></div>
-    <p class="content" style="border-bottom: 1px solid #999;"><%= content %></p>
+    <p class="content"><%= content %></p>
+    <div style="text-align: center;">
+        <div id="previous-article">上一条</div>
+        <div id="next-article">下一条，你懂得!</div>
+        <div id="collection">收藏本页面</div>
+    </div>
 </script>
 
 <script type="text/html" id="template-comments">
-    <div id="from-comments" style="padding-top: 20px;">
+    <p class="first-comment"><span id="shen-comment"></span>神评论</p>
+    <div id="from-comments" style="padding-top: 20px;clear: both">
         <% for (var i = 0; i < comments.length; i++){ %>
-        <div><%= comments[i].comment_username %></div>
-        <p style="border-bottom: 1px solid #999;"><%= comments[i].content %></p>
+        <div class="main-top">
+            <div class="name"><%= comments[i].username %></div>
+            <div class="time"><%= comments[i].created_at %></div>
+        </div>
+        <div class="comments-content"><%= comments[i].content %></div>
         <% } %>
     </div>
 </script>
 
+{% include "mini-login.html" %}
 <script src="../static/js/lib/jquery-3.2.1.min.js"></script>
 <script src="../static/js/lib/template-web.js"></script>
 <script src="../static/js/article.js"></script>

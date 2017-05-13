@@ -21,9 +21,8 @@ class ApiSubmissionHandler(tornado.web.RequestHandler):
             db.close()
             self.write('登录已经过期，请重新登录')
             return
-        title = self.get_argument('title')
         content = self.get_argument('content')
-        data = db.insert("insert into article value (%s,%s,%s,%s,%s)", None,title,content,None,uid)
+        data = db.insert("insert into article value (%s,%s,%s,%s)", None, content, None, uid)
         db.close()
         self.write('插入成功!文章ID是' + str(data))
 
@@ -36,8 +35,8 @@ class ApiCommentsHandler(tornado.web.RequestHandler):
         db = get_db()
         comments = db.query('select * from comment where article_id=%s',article_id)
         for comment in comments:
-            user_info = db.get('select id, username from user where id=%s', comment.uid)
-            comment['user_info'] = user_info
+            username = db.get('select username from user where id=%s', comment.uid)
+            comment['username'] = username.username
             comment['created_at'] = str(comment['created_at'])
         db.close()
         result = {}
@@ -45,6 +44,8 @@ class ApiCommentsHandler(tornado.web.RequestHandler):
         result['body'] = {'comments' : comments}
         result['message'] = '成功'
         self.write(json_encode(result))
+
+
 
 class ApiArticleHandler(tornado.web.RequestHandler):
     def get(self, article_id):
@@ -59,7 +60,7 @@ class ApiArticleHandler(tornado.web.RequestHandler):
         result['message'] = '成功'
         self.write(json_encode(result))
 
-class ApiArticleDetailHandler(tornado.web.RequestHandler):
+class ApiArticleArDetailHandler(tornado.web.RequestHandler):
     def get(self, article_id):
         db = get_db()
         article_content = db.get('select content from article where id=%s',article_id)

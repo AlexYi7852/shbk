@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="/static/css/public.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/submission.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/mini-login.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/users.css">
+    <script src="../static/js/mini-login.js"></script>
     <script src="../static/js/lib/jquery-3.2.1.min.js"></script>
     <script src="../static/js/public.js"></script>
 </head>
@@ -27,18 +27,19 @@
     </div>
 </div>
 
-<div class="submission_form">
-
-    <div>
-        <label>内容 :</label>
-        <textarea id="content" name="content"></textarea>
-    </div>
-    <button id="btn-submission">提交</button>
+<div id="main">
+    <div id="users-top"></div>
+    <div id="users-top-bottom"></div>
 </div>
+
+<script type="text/html" id="template-users">
+
+</script>
 
 {% include "mini-login.html" %}
 <script src="../static/js/lib/jquery-3.2.1.min.js"></script>
-<script src="../static/js/submission.js"></script>
+<script src="../static/js/lib/template-web.js"></script>
+<script src="../static/js/users.js"></script>
 
 </body>
 </html>
