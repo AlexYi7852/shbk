@@ -12,10 +12,6 @@ class ApiUserInfoHandler(tornado.web.RequestHandler):
     def get(self, user_id):
         db = get_db()
         user = db.get('select id, username, last_login_at, created_at from user where id=%s', user_id)
-        # for user in users:
-        #     user_info = db.query('select username from user where id=%s limit 1', user_id)
-        #     print user_info
-        #     user['username'] = user_info['username']
         user['last_login_at'] = str(user['last_login_at'])
         user['created_at'] = str(user['created_at'])
         db.close()
@@ -45,7 +41,7 @@ class ApiUserArticlesHandler(tornado.web.RequestHandler):
 class ApiUserCommentsHandler(tornado.web.RequestHandler):
     def get(self, user_id):
         db = get_db()
-        articles = db.query('select * from article where user_id=%s', user_id)
+        articles = db.get('select * from article where user_id=%s', user_id)
         comments = db.query('select * from comment where article_id=%s', articles.id)
         for comment in comments:
             username = db.get('select username from user where id=%s', comment.uid)

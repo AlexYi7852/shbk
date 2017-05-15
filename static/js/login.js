@@ -28,6 +28,7 @@
                     alert('登錄成功，上次登錄時間 ' + data.last_login_at)
                     var username = $("#username").val()
                     $("#mini-login").html(username)
+
                 } else {
                     alert('登錄失敗' + data.msg)
                 }
